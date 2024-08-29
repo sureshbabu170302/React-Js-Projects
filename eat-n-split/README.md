@@ -1,6 +1,6 @@
 ## Bill Splitting Application
 
-This project is a `React JS` application that allows users to manage their friends and split bills with them. The application helps keep track of expenses shared with friends, showing who owes whom and how much.
+This project is a `React JS application that allows users to manage their friends and split bills with them. The application helps keep track of expenses shared with friends, showing who owes whom and how much.
 
 ### Features
 
@@ -11,7 +11,7 @@ This project is a `React JS` application that allows users to manage their frien
 
 ### Project Structure
 
-- **`App.js`:** The main component managing the state of friends, selected friend, and showing different forms for adding friends or splitting bills.
+- **`App.js`:** The main component is managing the state of friends, selected friend, and showing different forms for adding friends or splitting bills.
 - **`FriendsList.js`:** Component that lists all the friends, allowing the user to select a friend for splitting bills.
 - **`Friend.js`:** Individual friend component that shows the friend’s name, image, and balance, and allows the user to select or deselect the friend.
 - **`FormAddFriend.js`:** Form component to add a new friend by entering their name and image URL.
@@ -19,10 +19,10 @@ This project is a `React JS` application that allows users to manage their frien
 
 ### Usage
 
-- **`Add a friend`:** Click the "Add Friend" button to open the form, enter the friend's name and image URL, and click "Add" to include them in the list.
-- **`Select a friend`:** Click the "Select" button next to a friend's name to start managing their expenses.
-- **`Split a bill`:** Enter the total bill amount, how much you paid, and select who is paying the bill. The balances will update accordingly.
-- **`Check balances`:** The app shows whether you owe your friend money or they owe you, with amounts displayed in red for negative balances and green for positive ones.
+- **Add a friend:** Click the "Add Friend" button to open the form, enter the friend's name and image URL, and click "Add" to include them in the list.
+- **Select a friend:** Click the "Select" button next to a friend's name to manage their expenses.
+- **Split a bill:** Enter the total bill amount, and how much you paid, and select who is paying the bill. The balances will be updated accordingly.
+- **Check balances:** The app shows whether you owe your friend money or they owe you, with amounts displayed in red for negative balances and green for positive ones.
 
 ### Technologies used
 
