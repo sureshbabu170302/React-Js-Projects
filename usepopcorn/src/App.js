@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const tempMovieData = [
   {
@@ -51,21 +51,57 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [watched, setWatched] = useState(tempWatchedData);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const APIkey = "7fefa1b0";
+    async function fetchMovies() {
+      try {
+        setIsLoading(true);
+        setError("");
+        const response = await fetch(
+          `http://www.omdbapi.com/?s=${query}&apikey=${APIkey}`
+        );
+        if (!response.ok) {
+          throw new Error("Error fetching movies!");
+        }
+        const data = await response.json();
+        if (data.Response === "False") {
+          throw new Error("Movie not found");
+        }
+        setMovies(data.Search);
+      } catch (err) {
+        console.error(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (!query.length) {
+      setMovies([]);
+      setError("");
+    }
+    fetchMovies();
+  }, [query]);
 
   return (
     <>
       {/* Navbar Area */}
       <NavBar movies={movies}>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
 
       {/* Main Content Area */}
       <Main>
         <Box>
-          <SearchMoviesList movies={movies} />
+          {isLoading && <Loader />}
+          {!isLoading && !error && <SearchMoviesList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
           <WatchedSummary watched={watched} />
@@ -94,9 +130,7 @@ function Logo() {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
-
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -105,6 +139,19 @@ function Search() {
       value={query}
       onChange={(e) => setQuery(e.target.value)}
     />
+  );
+}
+
+function Loader() {
+  return <p className="loader">Loading...</p>;
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>⛔</span>
+      {message}
+    </p>
   );
 }
 
