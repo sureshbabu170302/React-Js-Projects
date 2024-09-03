@@ -335,7 +335,7 @@ body {
   cursor: pointer;
   z-index: 999;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 

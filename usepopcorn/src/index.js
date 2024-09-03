@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import StarRating from "./StarRating";
-import "./index.css";
+import "../src/Styles/index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
