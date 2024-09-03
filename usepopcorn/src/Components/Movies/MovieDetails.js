@@ -62,9 +62,18 @@ export default function MovieDetails({
       const data = await response.json();
       setMovie(data);
       setIsLoading(false);
+      // document.title = `Movie | ${data.Title}`;
     }
     getMovieDetails();
   }, [selectedId]);
+
+  useEffect(() => {
+    document.title = `Movie | ${title}`;
+
+    return () => {
+      document.title = "usePopcorn";
+    };
+  }, [title]);
 
   return (
     <div className="details">

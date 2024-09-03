@@ -32,14 +32,21 @@ export default function App() {
     setWatched((watched) => [...watched, movie]);
   }
 
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
+
   useEffect(() => {
+    const controller = new AbortController();
     async function fetchMovies() {
       try {
         setIsLoading(true);
         setError("");
         const response = await fetch(
-          `http://www.omdbapi.com/?s=${query}&apikey=${APIkey}`
+          `http://www.omdbapi.com/?s=${query}&apikey=${APIkey}`,
+          { signal: controller.signal }
         );
+
         if (!response.ok) {
           throw new Error("Error fetching movies!");
         }
@@ -48,8 +55,12 @@ export default function App() {
           throw new Error("Movie not found");
         }
         setMovies(data.Search);
+        setError("");
       } catch (err) {
-        console.error(err.message);
+        if (err.name !== "AbortError") {
+          console.error(err.message);
+          setError(err.message);
+        }
         setError(err.message);
       } finally {
         setIsLoading(false);
@@ -61,6 +72,9 @@ export default function App() {
       return;
     }
     fetchMovies();
+    return () => {
+      controller.abort();
+    };
   }, [query]);
 
   return (
@@ -94,7 +108,10 @@ export default function App() {
           ) : (
             <>
               <WatchedSummary watched={watched} />
-              <WatchedMoviesList watched={watched} />
+              <WatchedMoviesList
+                watched={watched}
+                handleDeleteWatched={handleDeleteWatched}
+              />
             </>
           )}
         </Box>
