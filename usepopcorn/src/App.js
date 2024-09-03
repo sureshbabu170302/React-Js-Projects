@@ -18,7 +18,7 @@ export default function App() {
   const [error, setError] = useState("");
   const [watched, setWatched] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("inception");
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -89,6 +89,7 @@ export default function App() {
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie}
               onAddWatched={handleAddWatched}
+              watched={watched}
             />
           ) : (
             <>

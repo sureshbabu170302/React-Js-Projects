@@ -7,9 +7,16 @@ export default function MovieDetails({
   selectedId,
   onCloseMovie,
   onAddWatched,
+  watched,
 }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState(0);
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+  const watchedUserRating = watched.find(
+    (movie) => movie.imdbID === selectedId
+  )?.userRating;
+  let findWatchedMovie = null;
 
   const {
     Title: title,
@@ -32,8 +39,18 @@ export default function MovieDetails({
       poster,
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
+      userRating,
     };
-    onAddWatched(newWatchedMovie);
+
+    findWatchedMovie = watched.find(
+      (mov) => mov.imdbID === newWatchedMovie.imdbID
+    );
+    if (findWatchedMovie) {
+      console.error("Movie is already added to the list");
+    } else {
+      onAddWatched(newWatchedMovie);
+    }
+    onCloseMovie();
   }
 
   useEffect(() => {
@@ -74,10 +91,23 @@ export default function MovieDetails({
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={24} />
-              <button className="btn-add" onClick={handleAdd}>
-                + Add to list
-              </button>
+              {!isWatched ? (
+                <>
+                  <StarRating
+                    maxRating={10}
+                    size={24}
+                    onSetRating={setUserRating}
+                  />
+
+                  {userRating > 0 && (
+                    <button className="btn-add" onClick={handleAdd}>
+                      + Add to list
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p>You have rated this movie ⭐{watchedUserRating}</p>
+              )}
             </div>
             <p>
               <em>{plot}</em>
