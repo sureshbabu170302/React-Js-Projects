@@ -1,5 +1,5 @@
 import Loader from "../Main/Loader";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import StarRating from "../Elements/StarRating";
 import { APIkey } from "../../Keys/config";
 
@@ -16,6 +16,7 @@ export default function MovieDetails({
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
   )?.userRating;
+  const countRef = useRef(0);
   let findWatchedMovie = null;
 
   const {
@@ -40,6 +41,7 @@ export default function MovieDetails({
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRatingDecisions: countRef.current,
     };
 
     findWatchedMovie = watched.find(
@@ -52,6 +54,12 @@ export default function MovieDetails({
     }
     onCloseMovie();
   }
+
+  useEffect(() => {
+    if (userRating) {
+      countRef.current = countRef.current + 1;
+    }
+  }, [userRating]);
 
   useEffect(() => {
     async function getMovieDetails() {

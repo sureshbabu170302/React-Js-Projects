@@ -16,7 +16,7 @@ export default function Search({ query, setQuery }) {
     return () => {
       document.addEventListener("keydown", callBack);
     };
-  }, []);
+  }, [setQuery]);
 
   return (
     <input
