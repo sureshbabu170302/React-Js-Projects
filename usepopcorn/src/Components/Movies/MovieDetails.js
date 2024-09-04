@@ -2,6 +2,7 @@ import Loader from "../Main/Loader";
 import { useState, useEffect, useRef } from "react";
 import StarRating from "../Elements/StarRating";
 import { APIkey } from "../../Keys/config";
+import { useKey } from "../../Hooks/useKey";
 
 export default function MovieDetails({
   selectedId,
@@ -83,19 +84,7 @@ export default function MovieDetails({
     };
   }, [title]);
 
-  function callBack(e) {
-    if (e.code === "Escape") {
-      onCloseMovie();
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener("keydown", callBack);
-
-    return () => {
-      document.removeEventListener("keydown", callBack);
-    };
-  }, [onCloseMovie]);
+  useKey("Escape", onCloseMovie);
 
   return (
     <div className="details">
