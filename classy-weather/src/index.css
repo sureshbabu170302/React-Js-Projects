@@ -90,3 +90,21 @@ input:focus {
   font-size: 2.4rem;
   font-weight: 700;
 }
+
+button {
+  background-color: beige;
+  color: black;
+  border: none;
+  height: 80%;
+  width: 10%;
+  padding: 1%;
+  border-radius: 5%;
+}
+
+button:hover {
+  background-color: burlywood;  
+}
+
+button:active{
+  opacity: 0.4;
+}
