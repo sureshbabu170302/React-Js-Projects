@@ -13,7 +13,6 @@ import { useSearchParams } from "react-router-dom";
 
 function City() {
   const { id } = useParams();
-  console.log(id);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const lat = searchParams.get("lat");
@@ -26,7 +25,7 @@ function City() {
   //   date: "2027-10-31T15:59:59.138Z",
   //   notes: "My favorite city so far!",
   // };
-  
+
   // const { cityName, emoji, date, notes } = currentCity;
 
   return (

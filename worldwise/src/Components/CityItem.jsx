@@ -11,7 +11,6 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 export default function CityItem({ city }) {
-  console.log(city);
   const { cityName, emoji, date, id, position } = city;
   return (
     <li>
