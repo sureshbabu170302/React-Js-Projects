@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import styles from "./CountryList.module.css";
 import Spinner from "./SpinnerFullPage";
 import Message from "./Message";
