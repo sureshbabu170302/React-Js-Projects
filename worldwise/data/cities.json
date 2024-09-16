@@ -10,7 +10,7 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": 73930385
+      "id": "73930385"
     },
     {
       "cityName": "Madrid",
@@ -22,7 +22,7 @@
         "lat": 40.46635901755316,
         "lng": -3.7133789062500004
       },
-      "id": 17806751
+      "id": "17806751"
     },
     {
       "cityName": "Berlin",
@@ -34,7 +34,31 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 98443197
+      "id": "98443197"
+    },
+    {
+      "id": "4f5f",
+      "cityName": "Salem",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-09-16T11:27:49.772Z",
+      "notes": "This is the first district in whole of INDIA",
+      "position": {
+        "lat": "11.6522364041154",
+        "lng": "78.17596435546876"
+      }
+    },
+    {
+      "id": "45ae",
+      "cityName": "Bengaluru",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-09-16T11:33:56.665Z",
+      "notes": "This is the city where i work",
+      "position": {
+        "lat": "12.969765512005967",
+        "lng": "77.59643554687501"
+      }
     }
   ]
 }
