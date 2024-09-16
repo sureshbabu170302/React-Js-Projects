@@ -35,30 +35,6 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
-    },
-    {
-      "id": "4f5f",
-      "cityName": "Salem",
-      "country": "India",
-      "emoji": "🇮🇳",
-      "date": "2024-09-16T11:27:49.772Z",
-      "notes": "This is the first district in whole of INDIA",
-      "position": {
-        "lat": "11.6522364041154",
-        "lng": "78.17596435546876"
-      }
-    },
-    {
-      "id": "45ae",
-      "cityName": "Bengaluru",
-      "country": "India",
-      "emoji": "🇮🇳",
-      "date": "2024-09-16T11:33:56.665Z",
-      "notes": "This is the city where i work",
-      "position": {
-        "lat": "12.969765512005967",
-        "lng": "77.59643554687501"
-      }
     }
   ]
 }
