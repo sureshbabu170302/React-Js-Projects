@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CitiesContext = createContext();
+
+const BASE_URL = "http://localhost:3000";
 
 function CitiesProvider({ children }) {
   const [cities, setCities] = useState([]);
@@ -11,7 +14,7 @@ function CitiesProvider({ children }) {
     async function fetchCities() {
       try {
         setIsLoading(true);
-        const response = await fetch(`${URL}/cities`);
+        const response = await fetch(`${BASE_URL}/cities`);
         if (!response.ok) {
           throw new Error("Error fetching cities!");
         }
@@ -25,4 +28,19 @@ function CitiesProvider({ children }) {
     }
     fetchCities();
   }, []);
+
+  return (
+    <CitiesContext.Provider value={{ cities, isLoading }}>
+      {children}
+    </CitiesContext.Provider>
+  );
 }
+
+function useCities() {
+  const context = useContext(CitiesContext);
+  if (context === undefined)
+    throw new Error("Cities context was used outside the CitiesProvider");
+  return context;
+}
+
+export { CitiesProvider, useCities };
