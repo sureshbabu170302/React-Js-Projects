@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useReducer } from "react";
@@ -15,8 +13,8 @@ const initialState = {
   error: "",
 };
 
-function reducer(state, actions) {
-  switch (actions.type) {
+function reducer(state, action) {
+  switch (action.type) {
     case "loading":
       return {
         ...state,
@@ -26,31 +24,33 @@ function reducer(state, actions) {
       return {
         ...state,
         isLoading: false,
-        cities: actions.payload,
+        cities: action.payload,
       };
     case "city/loaded":
       return {
         ...state,
         isLoading: false,
-        currentCity: actions.payload,
+        currentCity: action.payload,
       };
-    case "cities/created":
+    case "city/created":
       return {
         ...state,
         isLoading: false,
-        cities: [...state.cities, actions.payload],
+        cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
-    case "cities/deleted":
+    case "city/deleted":
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter((city) => city.id !== actions.payload),
+        cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity: {},
       };
     case "rejected":
       return {
         ...state,
         isLoading: false,
-        error: actions.payload,
+        error: action.payload,
       };
     default:
       throw new Error("Unknown action");
@@ -58,7 +58,7 @@ function reducer(state, actions) {
 }
 
 function CitiesProvider({ children }) {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -81,6 +81,7 @@ function CitiesProvider({ children }) {
   }, []);
 
   async function getCity(id) {
+    if (Number(id) === currentCity.id) return;
     dispatch({ type: "loading" });
     try {
       const response = await fetch(`${BASE_URL}/cities/${id}`);
@@ -108,7 +109,7 @@ function CitiesProvider({ children }) {
         throw new Error("Error adding the city!");
       }
       const data = await response.json();
-      dispatch({ type: "cities/created", payload: data });
+      dispatch({ type: "city/created", payload: data });
     } catch (err) {
       dispatch({ type: "rejected", payload: err });
     }
@@ -120,7 +121,7 @@ function CitiesProvider({ children }) {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
-      dispatch({ type: "cities/deleted", payload: id });
+      dispatch({ type: "city/deleted", payload: id });
     } catch {
       dispatch({ type: "rejected", payload: "Error deleting the city" });
     }
@@ -132,6 +133,7 @@ function CitiesProvider({ children }) {
         cities,
         isLoading,
         currentCity,
+        error,
         getCity,
         createCity,
         deleteCity,

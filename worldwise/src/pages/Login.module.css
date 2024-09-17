@@ -25,9 +25,3 @@
   gap: 0.5rem;
 }
 
-.submitBtn {
-  background-color: var(--color-brand--2);
-  padding: 2%;
-  border-radius: 7px;
-  border: none;
-}
