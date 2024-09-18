@@ -36,7 +36,7 @@ atomic-blog/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/sureshbabu170302/React-Js-Projects.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -86,7 +86,3 @@ atomic-blog/
 - Add a pagination system for the post archive.
 - Implement more advanced filtering options.
 - Persist posts and theme settings across sessions using local storage.
-
-## License
-
-This project is open source and available under the MIT License.

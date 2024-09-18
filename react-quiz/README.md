@@ -44,15 +44,18 @@ The application uses the `useReducer` hook for state management. The following a
 ## Installation
 
 1. Clone the repository
-    ```
-    git clone https://github.com/sureshbabu170302/React-Js-Projects.git
-    ```
-2. Install dependencies
-    ```
-    npm install
-    ```
-3. Run the application
-    ```
-    npm start
-    ```
-
+   ```
+   git clone https://github.com/sureshbabu170302/React-Js-Projects.git
+   ```
+2. Navigate to Project
+   ```
+   cd react-quiz
+   ```
+3. Install dependencies
+   ```
+   npm install
+   ```
+4. Run the application
+   ```
+   npm start
+   ```
