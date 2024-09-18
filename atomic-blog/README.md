@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Atomic Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The **Atomic Blog** is a dynamic React application that allows users to manage a list of "atomic posts". The app includes features like creating, searching, and managing posts, toggling between light and dark modes, and displaying archived posts from a large post archive.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🌙 **Dark Mode**: Toggle between light and dark themes using a button.
+- 📜 **Search Functionality**: Search through the posts by title or body.
+- 📦 **Post Management**: Add new posts or clear all current posts.
+- 📂 **Archive**: View a large archive of 10,000 posts and add them as new posts.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: For building the user interface.
+- **Context API**: For managing global state (posts, search query).
+- **Faker.js**: To generate random posts with unique titles and bodies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Folder Structure
 
-### `npm test`
+```
+atomic-blog/
+│
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   │── PostContext.js
+│   ├── App.js
+│   |── index.js
+|   |── Test.js
+├── package.json
+└── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to Run This Project
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd atomic-blog
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+5. Open your browser and visit `http://localhost:3000` to view the app.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## App Functionality Overview
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. **Dark Mode Toggle**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Button to toggle between light and dark modes.
+- Utilizes the `isFakeDark` state to manage theme changes.
 
-### `npm run eject`
+### 2. **Post Context (PostContext.js)**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `PostContext` provides global state management for posts and search queries.
+- Posts are dynamically generated using **Faker.js**.
+- Includes context functions to **add new posts**, **search posts**, and **clear all posts**.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. **Header**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Displays the title of the blog.
+- Includes a search input field to filter posts by title or body content.
+- Displays the total number of posts found and a button to clear all posts.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. **Main Section**
 
-## Learn More
+- The main content includes a form to add new posts and a list of posts.
+- Posts are rendered as a list with a title and body content.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. **Archive**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Archive section displays a list of 10,000 posts.
+- Option to add archive posts to the current list as new posts.
 
-### Code Splitting
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Add a pagination system for the post archive.
+- Implement more advanced filtering options.
+- Persist posts and theme settings across sessions using local storage.
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open source and available under the MIT License.
