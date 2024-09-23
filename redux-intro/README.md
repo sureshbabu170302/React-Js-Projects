@@ -33,11 +33,11 @@ src/
 │   ├── accounts/
 │   │   ├── accountSlice.js  # Redux slice for account state management.
 │   │   ├── AccountOperations.js
-│   │   ├── BalanceDisplay.js
+│   │   └── BalanceDisplay.js
 │   └── customers/
 │       ├── customerSlice.js  # Redux slice for customer state management.
 │       ├── Customer.js
-│       ├── CreateCustomer.js
+│       └── CreateCustomer.js
 │
 ├── store.js  # Redux store configuration.
 ├── App.js    # Main application entry point.
