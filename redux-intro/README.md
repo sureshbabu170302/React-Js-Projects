@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Redux Toolkit Banking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple banking app that demonstrates the use of **Redux Toolkit** for state management. The app manages **account** and **customer** states, allowing users to deposit, withdraw, request loans, and create customer profiles. It also includes **currency conversion** when making deposits in different currencies.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Account Operations
 
-### `npm start`
+- **Deposit funds**: Users can deposit funds into their account, and if they deposit in a foreign currency, the amount will be converted to USD using a currency conversion API.
+- **Withdraw funds**: Users can withdraw funds from their account.
+- **Request a loan**: Users can request a loan with a specific purpose, and the loan will be added to their balance.
+- **Pay off loan**: If a user has an active loan, they can pay it off.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Customer Management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Create a new customer**: Users can create a customer by providing a full name and national ID.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: Frontend UI framework.
+- **Redux Toolkit**: State management for handling account and customer data.
+- **Fetch API**: Used for currency conversion and communicating with the backend.
+- **React Router**: Handles navigation in the application.
+- **React-Redux**: For connecting React components with Redux state.
+- **JavaScript**: Core logic is written in JavaScript.
 
-### `npm run build`
+## Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+src/
+│
+├── features/
+│   ├── accounts/
+│   │   ├── accountSlice.js  # Redux slice for account state management.
+|   │   ├── AccountOperations.js
+│   │   ├── BalanceDisplay.js
+│   └── customers/
+│       ├── customerSlice.js  # Redux slice for customer state management.
+│       ├── Customer.js
+│       ├── CreateCustomer.js
+│
+├── store.js  # Redux store configuration.
+├── App.js    # Main application entry point.
+└── index.js  # App bootstrap file.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Redux Slices
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `accountSlice.js`
 
-### `npm run eject`
+This slice manages the account state, including the balance, loan amount, and loan purpose. It also handles **asynchronous currency conversion** when depositing in foreign currencies.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Key Actions:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `deposit`: Add funds to the account balance.
+- `withdraw`: Withdraw funds from the account.
+- `requestLoan`: Request a loan, which is added to the account balance.
+- `payLoan`: Pay off an active loan.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `customerSlice.js`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This slice manages the customer state, including creating a new customer with a full name and national ID.
 
-## Learn More
+Key Actions:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `createCustomer`: Creates a new customer with a timestamp.
+- `updateCustomer`: Updates the customer information.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Store Configuration
 
-### Code Splitting
+The Redux store combines the `account` and `customer` reducers to manage the global state. The store is configured using `configureStore` from **Redux Toolkit**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+import { configureStore } from "@reduxjs/toolkit";
+import accountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
 
-### Analyzing the Bundle Size
+const store = configureStore({
+  reducer: {
+    account: accountReducer,
+    customer: customerReducer,
+  },
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+export default store;
+```
 
-### Making a Progressive Web App
+## Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
