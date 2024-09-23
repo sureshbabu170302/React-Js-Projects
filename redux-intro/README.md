@@ -32,7 +32,7 @@ src/
 ├── features/
 │   ├── accounts/
 │   │   ├── accountSlice.js  # Redux slice for account state management.
-|   │   ├── AccountOperations.js
+│   │   ├── AccountOperations.js
 │   │   ├── BalanceDisplay.js
 │   └── customers/
 │       ├── customerSlice.js  # Redux slice for customer state management.
