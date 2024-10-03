@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/ ");
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 
